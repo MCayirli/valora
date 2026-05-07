@@ -4,7 +4,7 @@ import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
-  base: '/doviz-pwa/',
+  base: '/valora/',
   plugins: [
     vue(),
     tailwindcss(),
@@ -19,7 +19,7 @@ export default defineConfig({
         'pwa-512x512.png',
       ],
       manifest: {
-        id: '/doviz-pwa/',
+        id: '/valora/',
         name: 'Valora',
         short_name: 'Valora',
         description: 'Doviz ve altin varliklarinizin toplam TL degerini hizlica takip edin.',
@@ -28,8 +28,8 @@ export default defineConfig({
         background_color: '#020617',
         display: 'standalone',
         orientation: 'portrait',
-        scope: '/doviz-pwa/',
-        start_url: '/doviz-pwa/',
+        scope: '/valora/',
+        start_url: '/valora/',
         icons: [
           {
             src: 'pwa-192x192.png',
@@ -52,7 +52,7 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,webmanifest}'],
         cleanupOutdatedCaches: true,
-        navigateFallback: '/doviz-pwa/index.html',
+        navigateFallback: '/valora/index.html',
         runtimeCaching: [
           {
             urlPattern: ({ url }) =>

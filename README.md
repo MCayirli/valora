@@ -45,7 +45,7 @@ npm run preview
 
 ## GitHub Pages Deploy
 
-Bu proje `base: '/doviz-pwa/'` ile ayarlıdır. Repository adı `doviz-pwa` olduğu sürece GitHub Pages ile uyumludur.
+Bu proje `base: '/valora/'` ile ayarlıdır. Repository adı `valora` olduğu sürece GitHub Pages ile uyumludur.
 
 Deploy için:
 

@@ -20,8 +20,8 @@ export default defineConfig({
       ],
       manifest: {
         id: '/doviz-pwa/',
-        name: 'Doviz PWA',
-        short_name: 'DovizPWA',
+        name: 'Valora',
+        short_name: 'Valora',
         description: 'Doviz ve altin varliklarinizin toplam TL degerini hizlica takip edin.',
         lang: 'tr',
         theme_color: '#020617',

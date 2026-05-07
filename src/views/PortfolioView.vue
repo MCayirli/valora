@@ -57,7 +57,7 @@ onUnmounted(() => {
     <section class="relative mx-auto flex min-h-screen w-full max-w-md flex-col gap-4 px-4 py-5 sm:px-6 sm:py-6">
       <header class="flex items-center justify-between gap-3 px-1">
         <div>
-          <p class="text-xs font-medium uppercase tracking-[0.36em] text-sky-200/70">Döviz PWA</p>
+          <p class="text-xs font-medium uppercase tracking-[0.36em] text-sky-200/70">Valora</p>
           <p class="mt-2 text-sm text-slate-400">Döviz ve altın varlıklarınızın TL karşılığını takip edin.</p>
         </div>
 

@@ -1,4 +1,4 @@
-# Döviz PWA
+# Valora
 
 Vue 3 + Vite + Pinia + TailwindCSS + `vite-plugin-pwa` ile geliştirilmiş mobil odaklı tek ekranlı bir portföy uygulaması.
 

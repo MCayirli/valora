@@ -1,7 +1,7 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import PortfolioView from './views/PortfolioView.vue'
 </script>
 
 <template>
-  <HelloWorld />
+  <PortfolioView />
 </template>

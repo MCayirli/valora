@@ -26,7 +26,7 @@ const rateLabel = computed(() => props.asset.activeRateLabel)
   <article class="panel-surface p-4 transition-transform duration-200 hover:-translate-y-0.5">
     <div class="flex items-start justify-between gap-4">
       <div>
-        <p class="text-xs font-medium uppercase tracking-[0.28em] text-slate-500">Varlik</p>
+        <p class="text-xs font-medium uppercase tracking-[0.28em] text-slate-500">Varlık</p>
         <h2 class="mt-2 text-xl font-semibold tracking-tight text-white">{{ asset.code }}</h2>
         <p class="mt-1 text-xs uppercase tracking-[0.18em] text-slate-500">{{ asset.shortCode }}</p>
       </div>

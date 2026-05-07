@@ -15,14 +15,14 @@ const showOfflineNotice = computed(
 
 const emptyStateMessage = computed(() => {
   if (portfolioStore.isLoading) {
-    return 'Kur verileri yukleniyor...'
+    return 'Kur verileri yükleniyor...'
   }
 
   if (portfolioStore.errorMessage) {
-    return 'Veri alinamadigi icin liste gosterilemiyor.'
+    return 'Veri alınamadığı için liste gösterilemiyor.'
   }
 
-  return 'Portfoyunu olusturmak icin yukaridan varlik sec.'
+  return 'Portföyünü oluşturmak için yukarıdan varlık seç.'
 })
 
 function handleOnlineStatus() {
@@ -57,8 +57,8 @@ onUnmounted(() => {
     <section class="relative mx-auto flex min-h-screen w-full max-w-md flex-col gap-4 px-4 py-5 sm:px-6 sm:py-6">
       <header class="flex items-center justify-between gap-3 px-1">
         <div>
-          <p class="text-xs font-medium uppercase tracking-[0.36em] text-sky-200/70">Doviz PWA</p>
-          <p class="mt-2 text-sm text-slate-400">Doviz ve altin varliklarinizin TL karsiligini takip edin.</p>
+          <p class="text-xs font-medium uppercase tracking-[0.36em] text-sky-200/70">Döviz PWA</p>
+          <p class="mt-2 text-sm text-slate-400">Döviz ve altın varlıklarınızın TL karşılığını takip edin.</p>
         </div>
 
         <button
@@ -94,15 +94,15 @@ onUnmounted(() => {
 
       <StatusBanner
         v-if="portfolioStore.errorMessage"
-        message="Ag veya servis kaynakli bir sorun olabilir. Uygulama varsa son kaydedilen verileri kullanmaya devam eder."
+        message="Ağ veya servis kaynaklı bir sorun olabilir. Uygulama varsa son kaydedilen verileri kullanmaya devam eder."
         :title="portfolioStore.errorMessage"
         tone="error"
       />
 
       <StatusBanner
         v-else-if="showOfflineNotice"
-        message="PWA kabugu ve en son kaydedilen verilerle calismaya devam edebilirsiniz."
-        title="Cevrimdisi mod aktif"
+        message="PWA kabuğu ve en son kaydedilen verilerle çalışmaya devam edebilirsiniz."
+        title="Çevrimdışı mod aktif"
         tone="warning"
       />
 
@@ -110,7 +110,7 @@ onUnmounted(() => {
         <div
           class="flex items-center justify-between px-1 text-xs font-medium uppercase tracking-[0.24em] text-slate-500"
         >
-          <span>Varliklar</span>
+          <span>Varlıklar</span>
           <span>{{ portfolioStore.assets.length }}</span>
         </div>
 

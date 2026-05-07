@@ -9,8 +9,8 @@ const props = defineProps({
 defineEmits(['update:modelValue'])
 
 const options = [
-  { label: 'Alis Kur', value: 'buy' },
-  { label: 'Satis Kur', value: 'sell' },
+  { label: 'Alış Kur', value: 'buy' },
+  { label: 'Satış Kur', value: 'sell' },
 ]
 </script>
 

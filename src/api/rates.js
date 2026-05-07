@@ -21,7 +21,7 @@ export async function getExchangeRates() {
   })
 
   if (!response.ok) {
-    throw new Error(`Kur verisi alinamadi (${response.status}).`)
+    throw new Error(`Kur verisi alınamadı (${response.status}).`)
   }
 
   const payload = await response.json()
@@ -30,7 +30,7 @@ export async function getExchangeRates() {
     const apiMessage =
       typeof payload?.error === 'string' && payload.error.trim().length > 0
         ? payload.error.trim()
-        : 'Beklenmeyen API yaniti alindi.'
+        : 'Beklenmeyen API yanıtı alındı.'
 
     throw new Error(apiMessage)
   }
@@ -53,7 +53,7 @@ export async function getExchangeRates() {
     )
 
   if (!rates.length) {
-    throw new Error('Gecerli kur verisi bulunamadi.')
+    throw new Error('Geçerli kur verisi bulunamadı.')
   }
 
   return rates

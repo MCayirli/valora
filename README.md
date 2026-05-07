@@ -1,19 +1,19 @@
-# Doviz PWA
+# Döviz PWA
 
-Vue 3 + Vite + Pinia + TailwindCSS + `vite-plugin-pwa` ile gelistirilmis mobil odakli tek ekranli bir portfoy uygulamasi.
+Vue 3 + Vite + Pinia + TailwindCSS + `vite-plugin-pwa` ile geliştirilmiş mobil odaklı tek ekranlı bir portföy uygulaması.
 
-## Ozellikler
+## Özellikler
 
-- Doviz/altin kurlarini API'den ceker
-- Her varlik icin miktar girisine izin verir
-- Girilen miktarlari localStorage uzerinden kalici saklar
-- Toplam TL degerini anlik hesaplar
-- Dark theme ve mobile-first tasarim sunar
-- Installable PWA olarak calisir
-- Offline durumda uygulama kabugu ve son kaydedilen kurlarla acilabilir
-- Loading ve hata durumlarini gosterir
+- Döviz/altın kurlarını API'den çeker
+- Her varlık için miktar girişine izin verir
+- Girilen miktarları localStorage üzerinden kalıcı saklar
+- Toplam TL değerini anlık hesaplar
+- Dark theme ve mobile-first tasarım sunar
+- Installable PWA olarak çalışır
+- Offline durumda uygulama kabuğu ve son kaydedilen kurlarla açılabilir
+- Loading ve hata durumlarını gösterir
 
-## Teknoloji Yigini
+## Teknoloji Yığını
 
 - Vue 3 Composition API
 - Vite
@@ -28,13 +28,13 @@ Vue 3 + Vite + Pinia + TailwindCSS + `vite-plugin-pwa` ile gelistirilmis mobil o
 npm install
 ```
 
-## Gelistirme
+## Geliştirme
 
 ```bash
 npm run dev
 ```
 
-Varsayilan gelistirme adresi `http://localhost:5173` olur.
+Varsayılan geliştirme adresi `http://localhost:5173` olur.
 
 ## Production Build
 
@@ -45,23 +45,23 @@ npm run preview
 
 ## GitHub Pages Deploy
 
-Bu proje `base: '/doviz-pwa/'` ile ayarlidir. Repository adi `doviz-pwa` oldugu surece GitHub Pages ile uyumludur.
+Bu proje `base: '/doviz-pwa/'` ile ayarlıdır. Repository adı `doviz-pwa` olduğu sürece GitHub Pages ile uyumludur.
 
-Deploy icin:
+Deploy için:
 
 ```bash
 npm run deploy
 ```
 
-Bu komut once `dist/` build alir, sonra `gh-pages` ile yayinlar.
+Bu komut önce `dist/` build alır, sonra `gh-pages` ile yayınlar.
 
-GitHub tarafinda su ayari secin:
+GitHub tarafında şu ayarı seçin:
 
 1. Repository `Settings`
 2. `Pages`
-3. Source olarak `gh-pages` branch secimi
+3. Source olarak `gh-pages` branch seçimi
 
-## Proje Yapisi
+## Proje Yapısı
 
 ```text
 src/
@@ -73,13 +73,13 @@ src/
 
 ## API
 
-Uygulama su endpoint'ten veri ceker:
+Uygulama şu endpoint'ten veri çeker:
 
 ```text
 GET https://yata.dovizexchange.com/users/getkurlarapp
 ```
 
-Beklenen veri formati:
+Beklenen veri formatı:
 
 ```json
 [
@@ -94,4 +94,4 @@ Beklenen veri formati:
 ]
 ```
 
-API gecici olarak yanit vermezse uygulama hata mesaji gosterir; daha once alinmis kur verisi varsa cache uzerinden gostermeye devam eder.
+API geçici olarak yanıt vermezse uygulama hata mesajı gösterir; daha önce alınmış kur verisi varsa cache üzerinden göstermeye devam eder.

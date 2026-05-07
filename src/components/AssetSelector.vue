@@ -42,14 +42,14 @@ const filteredAssets = computed(() => {
     <div class="flex items-center justify-between gap-3">
       <div>
         <p class="text-xs font-medium uppercase tracking-[0.28em] text-slate-500">
-          Varlik Secimi
+          Varlık Seçimi
         </p>
         <p class="mt-2 text-sm text-slate-300">
-          Yalnizca sectigin varliklar portfoy listesinde gosterilir.
+          Yalnızca seçtiğin varlıklar portföy listesinde gösterilir.
         </p>
       </div>
       <div class="rounded-full border border-white/10 bg-slate-950/50 px-3 py-1 text-xs text-slate-300">
-        {{ selectedCodes.length }} secili
+        {{ selectedCodes.length }} seçili
       </div>
     </div>
 
@@ -70,7 +70,7 @@ const filteredAssets = computed(() => {
       <input
         v-model="query"
         class="mt-2 w-full rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 text-base text-white outline-none transition focus:border-sky-400/60 focus:ring-2 focus:ring-sky-400/20"
-        placeholder="USD, altin, EUR..."
+        placeholder="USD, altın, EUR..."
         type="text"
       />
     </label>
@@ -102,7 +102,7 @@ const filteredAssets = computed(() => {
               : 'bg-white/8 text-slate-400',
           ]"
         >
-          {{ selectedCodeSet.has(asset.code) ? 'Secili' : 'Ekle' }}
+          {{ selectedCodeSet.has(asset.code) ? 'Seçili' : 'Ekle' }}
         </span>
       </button>
     </div>

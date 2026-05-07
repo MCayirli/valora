@@ -53,7 +53,7 @@ export const usePortfolioStore = defineStore(
         return {
           ...rate,
           activeRate,
-          activeRateLabel: valuationMode.value === 'buy' ? 'Alis' : 'Satis',
+          activeRateLabel: valuationMode.value === 'buy' ? 'Alış' : 'Satış',
           amount,
           numericAmount,
           totalValue: numericAmount * activeRate,
@@ -145,10 +145,10 @@ export const usePortfolioStore = defineStore(
 
         if (hasCachedRates.value) {
           errorMessage.value =
-            'Canli kur verisi su an alinamadi. Son kaydedilen kurlar gosteriliyor.'
+            'Canlı kur verisi şu an alınamadı. Son kaydedilen kurlar gösteriliyor.'
         } else {
           errorMessage.value =
-            error instanceof Error ? error.message : 'Kur verisi alinirken bir hata olustu.'
+            error instanceof Error ? error.message : 'Kur verisi alınırken bir hata oluştu.'
         }
       } finally {
         isLoading.value = false

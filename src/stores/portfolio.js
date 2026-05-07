@@ -2,6 +2,8 @@ import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import { getExchangeRates } from '../api/rates'
 
+const DEFAULT_SELECTED_CODES = ['USD', 'EURO', 'HAS ALTIN', '24 AYAR 1 GRAM']
+
 function normalizeAmountInput(value) {
   const cleaned = String(value ?? '')
     .replace(/,/g, '.')
@@ -24,29 +26,45 @@ function parseAmount(value) {
   return Number.isFinite(parsed) ? parsed : 0
 }
 
+function getRateByMode(asset, valuationMode) {
+  return valuationMode === 'buy' ? asset.buyRate : asset.sellRate
+}
+
 export const usePortfolioStore = defineStore(
   'portfolio',
   () => {
     const rates = ref([])
     const amounts = ref({})
+    const selectedCodes = ref([])
+    const valuationMode = ref('sell')
+    const hasInitializedSelection = ref(false)
     const isLoading = ref(false)
     const errorMessage = ref('')
     const lastUpdated = ref('')
     const source = ref('idle')
     const isOffline = ref(typeof navigator !== 'undefined' ? !navigator.onLine : false)
 
-    const assets = computed(() =>
+    const allAssets = computed(() =>
       rates.value.map((rate) => {
         const amount = amounts.value[rate.code] ?? ''
         const numericAmount = parseAmount(amount)
+        const activeRate = getRateByMode(rate, valuationMode.value)
 
         return {
           ...rate,
+          activeRate,
+          activeRateLabel: valuationMode.value === 'buy' ? 'Alis' : 'Satis',
           amount,
           numericAmount,
-          totalValue: numericAmount * rate.rate,
+          totalValue: numericAmount * activeRate,
         }
       }),
+    )
+
+    const selectedAssetSet = computed(() => new Set(selectedCodes.value))
+
+    const assets = computed(() =>
+      allAssets.value.filter((asset) => selectedAssetSet.value.has(asset.code)),
     )
 
     const totalValue = computed(() =>
@@ -63,6 +81,22 @@ export const usePortfolioStore = defineStore(
           return validCodes.has(code) || parseAmount(value) > 0
         }),
       )
+
+      selectedCodes.value = selectedCodes.value.filter((code) => validCodes.has(code))
+    }
+
+    function initializeDefaultSelection(nextRates) {
+      if (hasInitializedSelection.value || selectedCodes.value.length > 0) {
+        return
+      }
+
+      const availableCodes = new Set(nextRates.map((item) => item.code))
+      const nextSelectedCodes = DEFAULT_SELECTED_CODES.filter((code) => availableCodes.has(code))
+
+      selectedCodes.value = nextSelectedCodes.length
+        ? nextSelectedCodes
+        : nextRates.slice(0, 4).map((item) => item.code)
+      hasInitializedSelection.value = true
     }
 
     function setAmount(code, value) {
@@ -70,6 +104,21 @@ export const usePortfolioStore = defineStore(
         ...amounts.value,
         [code]: normalizeAmountInput(value),
       }
+    }
+
+    function toggleAssetSelection(code) {
+      if (selectedCodes.value.includes(code)) {
+        selectedCodes.value = selectedCodes.value.filter((item) => item !== code)
+        hasInitializedSelection.value = true
+        return
+      }
+
+      selectedCodes.value = [...selectedCodes.value, code]
+      hasInitializedSelection.value = true
+    }
+
+    function setValuationMode(mode) {
+      valuationMode.value = mode === 'buy' ? 'buy' : 'sell'
     }
 
     function setOfflineStatus(status) {
@@ -88,6 +137,7 @@ export const usePortfolioStore = defineStore(
         const nextRates = await getExchangeRates()
         rates.value = nextRates
         syncKnownAssets(nextRates)
+        initializeDefaultSelection(nextRates)
         lastUpdated.value = new Date().toISOString()
         source.value = 'network'
       } catch (error) {
@@ -106,26 +156,41 @@ export const usePortfolioStore = defineStore(
     }
 
     return {
+      allAssets,
       assets,
       amounts,
       clearError,
       errorMessage,
       fetchRates,
       hasCachedRates,
+      hasInitializedSelection,
       isLoading,
       isOffline,
       lastUpdated,
       rates,
       setAmount,
       setOfflineStatus,
+      setValuationMode,
       source,
+      selectedCodes,
+      selectedAssetSet,
       totalValue,
+      toggleAssetSelection,
+      valuationMode,
     }
   },
   {
     persist: {
       key: 'doviz-pwa-store',
-      pick: ['amounts', 'lastUpdated', 'rates', 'source'],
+      pick: [
+        'amounts',
+        'hasInitializedSelection',
+        'lastUpdated',
+        'rates',
+        'selectedCodes',
+        'source',
+        'valuationMode',
+      ],
     },
   },
 )

@@ -16,9 +16,10 @@ const currencyFormatter = new Intl.NumberFormat('tr-TR', {
   maximumFractionDigits: 2,
 })
 
-const unitRate = computed(() => currencyFormatter.format(props.asset.rate))
+const unitRate = computed(() => currencyFormatter.format(props.asset.activeRate))
 const totalValue = computed(() => currencyFormatter.format(props.asset.totalValue))
 const inputId = computed(() => `amount-${props.asset.code.toLowerCase()}`)
+const rateLabel = computed(() => props.asset.activeRateLabel)
 </script>
 
 <template>
@@ -27,10 +28,11 @@ const inputId = computed(() => `amount-${props.asset.code.toLowerCase()}`)
       <div>
         <p class="text-xs font-medium uppercase tracking-[0.28em] text-slate-500">Varlik</p>
         <h2 class="mt-2 text-xl font-semibold tracking-tight text-white">{{ asset.code }}</h2>
+        <p class="mt-1 text-xs uppercase tracking-[0.18em] text-slate-500">{{ asset.shortCode }}</p>
       </div>
 
       <div class="rounded-full border border-sky-400/20 bg-sky-400/10 px-3 py-1 text-xs font-medium text-sky-200">
-        {{ unitRate }}
+        {{ rateLabel }}: {{ unitRate }}
       </div>
     </div>
 

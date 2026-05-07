@@ -1,8 +1,10 @@
 <script setup>
 import { computed, onMounted, onUnmounted } from 'vue'
 import AssetCard from '../components/AssetCard.vue'
+import AssetSelector from '../components/AssetSelector.vue'
 import PortfolioSummary from '../components/PortfolioSummary.vue'
 import StatusBanner from '../components/StatusBanner.vue'
+import ValuationSwitch from '../components/ValuationSwitch.vue'
 import { usePortfolioStore } from '../stores/portfolio'
 
 const portfolioStore = usePortfolioStore()
@@ -20,7 +22,7 @@ const emptyStateMessage = computed(() => {
     return 'Veri alinamadigi icin liste gosterilemiyor.'
   }
 
-  return 'Portfoy olusturmak icin kur verileri beklenecek.'
+  return 'Portfoyunu olusturmak icin yukaridan varlik sec.'
 })
 
 function handleOnlineStatus() {
@@ -76,6 +78,18 @@ onUnmounted(() => {
         :last-updated="portfolioStore.lastUpdated"
         :source="portfolioStore.source"
         :total-value="portfolioStore.totalValue"
+        :valuation-mode="portfolioStore.valuationMode"
+      />
+
+      <ValuationSwitch
+        :model-value="portfolioStore.valuationMode"
+        @update:model-value="portfolioStore.setValuationMode($event)"
+      />
+
+      <AssetSelector
+        :assets="portfolioStore.allAssets"
+        :selected-codes="portfolioStore.selectedCodes"
+        @toggle="portfolioStore.toggleAssetSelection($event)"
       />
 
       <StatusBanner

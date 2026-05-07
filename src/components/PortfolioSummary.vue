@@ -22,6 +22,10 @@ const props = defineProps({
     type: String,
     default: 'idle',
   },
+  valuationMode: {
+    type: String,
+    default: 'sell',
+  },
   totalValue: {
     type: Number,
     required: true,
@@ -67,6 +71,10 @@ const syncStatusLabel = computed(() => {
 
   return 'Canli kur akisi hazir'
 })
+
+const valuationLabel = computed(() =>
+  props.valuationMode === 'buy' ? 'Alis kurlariyla hesaplama' : 'Satis kurlariyla hesaplama',
+)
 </script>
 
 <template>
@@ -97,12 +105,13 @@ const syncStatusLabel = computed(() => {
         </div>
 
         <div class="rounded-2xl border border-white/8 bg-slate-950/40 p-3">
-          <p class="text-xs uppercase tracking-[0.2em] text-slate-500">Veri Durumu</p>
-          <p class="mt-2 text-base font-medium text-slate-100">{{ syncStatusLabel }}</p>
+          <p class="text-xs uppercase tracking-[0.2em] text-slate-500">Hesaplama</p>
+          <p class="mt-2 text-base font-medium text-slate-100">{{ valuationLabel }}</p>
         </div>
       </div>
 
       <div class="flex items-center justify-between gap-3 text-xs text-slate-400">
+        <span>{{ syncStatusLabel }}</span>
         <span>Son guncelleme: {{ formattedLastUpdated }}</span>
         <span v-if="source === 'network'" class="text-emerald-300">Canli</span>
         <span v-else-if="source === 'cache'" class="text-amber-300">Cache</span>

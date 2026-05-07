@@ -38,9 +38,19 @@ export async function getExchangeRates() {
   const rates = payload
     .map((item) => ({
       code: String(item?.dovizAd ?? '').trim(),
-      rate: Number(item?.satisKur ?? 0),
+      shortCode: String(item?.dovizcins ?? item?.dovizAd ?? '').trim(),
+      buyRate: Number(item?.alisKur ?? 0),
+      sellRate: Number(item?.satisKur ?? 0),
+      category: String(item?.dovizMaden ?? '').trim(),
     }))
-    .filter((item) => item.code && Number.isFinite(item.rate) && item.rate > 0)
+    .filter(
+      (item) =>
+        item.code &&
+        item.shortCode &&
+        Number.isFinite(item.buyRate) &&
+        Number.isFinite(item.sellRate) &&
+        (item.buyRate > 0 || item.sellRate > 0),
+    )
 
   if (!rates.length) {
     throw new Error('Gecerli kur verisi bulunamadi.')

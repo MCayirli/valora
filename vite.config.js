@@ -60,7 +60,7 @@ export default defineConfig({
               url.pathname === '/users/getkurlarapp',
             handler: 'NetworkFirst',
             options: {
-              cacheName: 'doviz-rates-cache',
+              cacheName: 'valora-rates-cache',
               networkTimeoutSeconds: 10,
               cacheableResponse: {
                 statuses: [0, 200],

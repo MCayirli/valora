@@ -181,7 +181,7 @@ export const usePortfolioStore = defineStore(
   },
   {
     persist: {
-      key: 'doviz-pwa-store',
+      key: 'valora-store',
       pick: [
         'amounts',
         'hasInitializedSelection',

@@ -77,17 +77,17 @@ define(['./workbox-edf91e0a'], (function (workbox) { 'use strict';
    * See https://goo.gl/S9QRab
    */
   workbox.precacheAndRoute([{
-    "url": "/doviz-pwa/index.html",
+    "url": "/valora/index.html",
     "revision": "0.3ok521k0ncg"
   }], {});
   workbox.cleanupOutdatedCaches();
-  workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL("/doviz-pwa/index.html"), {
+  workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL("/valora/index.html"), {
     allowlist: [/^\/$/]
   }));
   workbox.registerRoute(({
     url
   }) => url.origin === "https://yata.dovizexchange.com" && url.pathname === "/users/getkurlarapp", new workbox.NetworkFirst({
-    "cacheName": "doviz-rates-cache",
+    "cacheName": "valora-rates-cache",
     "networkTimeoutSeconds": 10,
     plugins: [new workbox.CacheableResponsePlugin({
       statuses: [0, 200]
